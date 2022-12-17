@@ -33,6 +33,13 @@ margin_right = 616.0
 margin_bottom = 282.0
 align = 1
 
+[node name="Button2" type="Button" parent="Login"]
+margin_left = 11.0
+margin_top = 11.0
+margin_right = 107.0
+margin_bottom = 31.0
+text = "create server"
+
 [node name="Room" type="Node" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="Room"]
@@ -55,12 +62,6 @@ margin_right = 89.0
 margin_bottom = 533.0
 text = "toggle mute"
 
-[node name="Button" type="Button" parent="."]
-margin_left = 1.0
-margin_right = 97.0
-margin_bottom = 20.0
-text = "create server"
-
 [connection signal="pressed" from="Login/Button" to="." method="create_client"]
+[connection signal="pressed" from="Login/Button2" to="." method="create_server"]
 [connection signal="pressed" from="Room/Mute" to="." method="toggle_mute"]
-[connection signal="pressed" from="Button" to="." method="create_server"]
