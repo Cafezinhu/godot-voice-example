@@ -33,6 +33,7 @@ func create_server():
 	get_tree().network_peer = peer
 	remove_child(login)
 	print("server created")
+	on_connect()
 
 func create_client():
 	var nickname_text = $Login/LineEdit.text
@@ -40,7 +41,7 @@ func create_client():
 		return
 	nickname = nickname_text
 	peer = NetworkedMultiplayerENet.new()
-	peer.create_client('157.230.15.102', 4242)
+	peer.create_client('127.0.0.1', 4242)
 	get_tree().network_peer = peer
 	remove_child(login)
 	print(nickname)
