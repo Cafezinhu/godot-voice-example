@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icons/muted.svg" type="Texture" id=1]
+[ext_resource path="res://scripts/PlayerPanel.gd" type="Script" id=2]
+
+[node name="Margin" type="MarginContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 366.0
+margin_bottom = 21.0
+size_flags_vertical = 2
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 359.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_right = 37.0
+margin_bottom = 14.0
+text = "nome"
+valign = 1
+
+[node name="MutedIcon" type="TextureRect" parent="HBoxContainer"]
+visible = false
+margin_left = 41.0
+margin_right = 359.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
