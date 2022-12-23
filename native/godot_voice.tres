@@ -1,0 +1,13 @@
+[gd_resource type="GDNativeLibrary" format=2]
+
+[resource]
+entry/Android.armeabi-v7a = "res://native/binaries/android/libgodot_voice32.so"
+entry/Android.arm64-v8a = "res://native/binaries/android/libgodot_voice64.so"
+entry/Windows.64 = "res://native/binaries/windows/godot_voice.dll"
+entry/X11.64 = "res://native/binaries/linux/libgodot_voice64.so"
+entry/X11.32 = "res://native/binaries/linux/libgodot_voice32.so"
+dependency/Android.armeabi-v7a = [  ]
+dependency/Android.arm64-v8a = [  ]
+dependency/Windows.64 = [  ]
+dependency/X11.64 = [  ]
+dependency/X11.32 = [  ]

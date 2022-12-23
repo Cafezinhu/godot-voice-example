@@ -10,11 +10,13 @@ var player_node = preload("res://PlayerPanel.tscn")
 var nickname = "server"
 var box_container
 
+var room = []
+
 func _ready():
+	print("oi")
 	login = $Login
 	box_container = $Room/PanelContainer/VBoxContainer
 	voip = get_node("/root/Voip")
-
 	get_tree().connect("network_peer_connected", self, "client_connected")
 	get_tree().connect("connected_to_server", self, "on_connect")
 	get_tree().connect("connection_failed", self, "on_connection_failed")
@@ -28,12 +30,19 @@ func _ready():
 		voip.set_server_mode(true)
 
 func create_server():
+	room.append(1)
+	voip.connect("voice_received", self, "_on_receive_voice")
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_server(4242, 10)
 	get_tree().network_peer = peer
 	remove_child(login)
 	print("server created")
 	on_connect()
+
+func _on_receive_voice(peer_id, voice_packet_id, voice_buffer):
+	for player in room:
+		if peer_id != player:
+			voip.rpc_unreliable_id(player, "receive_voice", peer_id, voice_packet_id, voice_buffer)
 
 func create_client():
 	var nickname_text = $Login/LineEdit.text
@@ -61,6 +70,7 @@ func on_connection_failed():
 
 func client_connected(id: int):
 	print("client " + str(id) + " connected")
+	room.append(id)
 	var player = voice_player.instance()
 
 	if not OS.has_feature("Server"):
@@ -80,6 +90,7 @@ func client_connected(id: int):
 		my_node.rset_id(id, "muted", voip.get_muted())
 
 func client_disconnected(id: int):
+	room.erase(id)
 	var node = box_container.get_node(str(id))
 	node.queue_free()
 	if not OS.has_feature("Server"):

@@ -21,15 +21,27 @@ enable_audio_input=true
 
 [autoload]
 
-Voip="*res://native/voip.gdns"
+Voip="*res://native/voice.gdns"
+
+[debug]
+
+multirun/number_of_windows=2
+multirun/window_distance=1270
+multirun/add_custom_args=true
+multirun/first_window_args="listen"
+multirun/other_window_args="join"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/multirun/plugin.cfg" )
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [physics]
 
